@@ -110,7 +110,7 @@ exports.APIMETA = {
                 "nested": false
             },
             "molecular_weight": {
-                "fields": ["chembl.molecule_properties.full_mwt, drugbank.weight.average"],
+                "fields": ["chembl.molecule_properties.full_mwt", "drugbank.weight.average"],
                 "nested": false
             },
             "AlogP": {
@@ -118,7 +118,7 @@ exports.APIMETA = {
                 "nested": false
             },
             "ATC_classification": {
-                "fields": ["chembl.atc_classifications, drugbank.xrefs.atc_codes"],
+                "fields": ["chembl.atc_classifications", "drugbank.xrefs.atc_codes"],
                 "nested": false
             },
             "molecule_type": {
@@ -172,13 +172,13 @@ exports.APIMETA = {
             "drug-class": {
                 "fields": ["drugbank.taxonomy.class"],
                 "nested": false
-            },
-            "parent": {
-                "fields": ["drugbank.taxonomy.direct-parent"],
-                "nested": false
             }
         }
     }
 }
 
 exports.MAX_CONCURRENT_QUERIES = 4;
+
+exports.CURIE = {
+    ALWAYS_PREFIXED: ["GO", "CHEBI", "HP", "MONDO", "DOID", "EFO", "UBERON", "MP", "CL", "MGI"]
+}
