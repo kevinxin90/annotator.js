@@ -180,3 +180,5 @@ exports.APIMETA = {
         }
     }
 }
+
+exports.MAX_CONCURRENT_QUERIES = 4;
