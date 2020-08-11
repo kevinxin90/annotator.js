@@ -1,8 +1,8 @@
-const dispatcher = require("../src/dispatch");
+const annotate = require("../src/index");
 
-describe("test dispatcher", () => {
+describe("test main function", () => {
 
-    test("test groupIDs function", () => {
+    test("test with gene ids", async () => {
         const ids = {
             "NCBIGene:4888": {
                 "id": {
@@ -69,10 +69,9 @@ describe("test dispatcher", () => {
                 ]
             }
         };
-        let dp = new dispatcher("Gene", ids);
-        dp.groupIDs();
-        expect(dp.grouped_ids).toHaveProperty('NCBIGene');
-        expect(Object.keys(dp.grouped_ids).length).toBe(1);
-        expect(Array.from(dp.grouped_ids.NCBIGene).length).toBe(2);
+        let res = await annotate("Gene", ids);
+        expect(res).toHaveProperty('NCBIGene:4888');
+        expect(Object.keys(res).length).toBe(2);
+        expect(res["NCBIGene:4888"]).toHaveProperty("alias")
     })
 })
