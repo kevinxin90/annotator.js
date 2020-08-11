@@ -74,4 +74,41 @@ describe("test main function", () => {
         expect(Object.keys(res).length).toBe(2);
         expect(res["NCBIGene:4888"]).toHaveProperty("alias")
     })
+
+    test("test with chemical ids", async () => {
+        const ids = {
+            "CHEBI:8863": {
+                "id": {
+                    "label": "RILUZOLE",
+                    "identifier": "CHEBI:8863"
+                },
+                "db_ids": {
+                    "CHEBI": [
+                        "CHEBI:8863"
+                    ],
+                    "CHEMBL.COMPOUND": [
+                        "CHEMBL744"
+                    ]
+                }
+            },
+            "CHEBI:133809": {
+                "id": {
+                    "label": "ANISINDIONE",
+                    "identifier": "CHEBI:133809"
+                },
+                "db_ids": {
+                    "CHEBI": [
+                        "CHEBI:133809"
+                    ],
+                    "CHEMBL.COMPOUND": [
+                        "CHEMBL712"
+                    ]
+                }
+            }
+        };
+        let res = await annotate("ChemicalSubstance", ids);
+        expect(res).toHaveProperty('CHEBI:133809');
+        expect(Object.keys(res).length).toBe(2);
+        expect(res["CHEBI:133809"]).toHaveProperty("max_phase")
+    })
 })
