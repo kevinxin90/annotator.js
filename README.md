@@ -22,7 +22,90 @@ npm i @biothings-explorer/annotator
 - Import and Initialize
 
     ```javascript
-    const annotator = require("@biothings-explorer/annotator")
+    const annotate = require("@biothings-explorer/annotator")
+    ```
+
+- Annotate Gene IDs
+
+    ```javascript
+    const gene_ids = {
+      "NCBIGene:4888": {
+          "db_ids": {
+              "NCBIGene": [
+                  "4888"
+              ],
+              "HGNC": [
+                  "7959"
+              ],
+              "SYMBOL": [
+                  "NPY6R"
+              ],
+              "UMLS": [
+                  "C1417819"
+              ]
+          }
+      },
+      "NCBIGene:4597": {
+          "db_ids": {
+              "NCBIGene": [
+                  "4597"
+              ],
+              "ENSEMBL": [
+                  "ENSG00000167508"
+              ],
+              "HGNC": [
+                  "7529"
+              ],
+              "SYMBOL": [
+                  "MVD"
+              ],
+              "UMLS": [
+                  "C1417507"
+              ]
+            }
+        }
+    }
+    let res = await annotate("Gene", gene_ids);
+    console.log(res);
+    // {"NCBIGene:4888": {"genomic_position": ..., "generif": ..., "biological_process": ...},"NCBIGene:4597": {"genomic_position": ..., "reactome": ..., "wikipathways": ...}}
+    ```
+
+- Annotate ChemicalSubstance IDs
+
+    ```javascript
+    const chemical_ids = {
+        "CHEBI:8863": {
+            "id": {
+                "label": "RILUZOLE",
+                "identifier": "CHEBI:8863"
+            },
+            "db_ids": {
+                "CHEBI": [
+                    "CHEBI:8863"
+                ],
+                "CHEMBL.COMPOUND": [
+                    "CHEMBL744"
+                ]
+            }
+        },
+        "CHEBI:133809": {
+            "id": {
+                "label": "ANISINDIONE",
+                "identifier": "CHEBI:133809"
+            },
+            "db_ids": {
+                "CHEBI": [
+                    "CHEBI:133809"
+                ],
+                "CHEMBL.COMPOUND": [
+                    "CHEMBL712"
+                ]
+            }
+        }
+    };
+    let res = await annotate("ChemicalSubstance", chemical_ids);
+    console.log(res);
+    // {"CHEBI:133809": {"max_phase": ..., "molecular_weight": ..., "molecular_type": ...}, "CHEBI:8863": {"max_phase": ..., "enzymes": ..., "targets": ...}}
     ```
 
 ## Run tests
