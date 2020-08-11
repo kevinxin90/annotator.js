@@ -1,7 +1,6 @@
 const config = require("./config");
 const _ = require('lodash');
 const jp = require("jsonpath");
-const { method } = require("lodash");
 
 module.exports = class {
     constructor(response, semanticType, prefix) {
