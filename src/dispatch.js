@@ -44,7 +44,7 @@ module.exports = class {
         if (_.isEmpty(inputs)) {
             return undefined;
         }
-        inputs = Array.from(inputs).join(',');
+        inputs = Array.from(inputs).map(item => "'" + item + "'").join(',');
         let apimeta = meta.APIMETA[this.semantic];
         let fields = [];
         Object.values(apimeta['mapping']).map(item => {
